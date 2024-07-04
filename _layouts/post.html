@@ -1,0 +1,36 @@
+---
+layout: default
+layout_class: post
+---
+<article layout="post" type="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  {%- if page.image -%}
+    <picture>
+      <img alt="{{ page.image_alt }}" src="{{ page.image }}" >
+      {%- if page.image_alt -%}
+      <p>{{page.image_alt}}</p>
+      {%- endif -%}
+      <p></p>
+    </picture>
+  {%- endif -%}
+
+  <content itemprop="articleBody">
+
+    <header class="post-header">
+      <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+      <p type="meta" class="post-meta">
+        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+          {{ page.date | date: date_format }}
+        </time>
+        {%- if page.author -%}
+          • by <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
+        {%- endif -%}</p>
+    </header>
+
+    {{ content }}
+
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  </content>
+
+</article>

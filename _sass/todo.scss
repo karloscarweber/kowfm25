@@ -1,0 +1,329 @@
+@charset "utf-8";
+
+:root {
+  --font-family: 'General Sans', -apple-system, Helvetica, Arial, sans-serif;
+  --font-family-monospace: Menlo, Courier New, monospace;
+  --base-font-size:16px;
+  --base-font-weight:400;
+  --small-font-size:13px;
+  --base-line-height:1.5;
+
+  --space-s: clamp(0.75rem, 0.75rem + 0vi, 0.75rem);
+  --space-l: clamp(1rem, 0.6479rem + 1.5023vi, 2rem);
+
+  --red-color:#FF3B2F;
+  --blue-color:#3323EF;
+  --yellow-color: #FFDD16;
+  --grey-color: #484848;
+
+  --text-color:black;
+  --heading-color:black;
+  --accent-color:var(--blue-color);
+
+  --background-color:#EDEDED;
+}
+
+/* @link https://utopia.fyi/clamp/calculator?a=375,1440,32—54|20—28|17—20|15—17|13—15 */
+:root {
+  --f2:  clamp(2rem, 1.5158rem + 2.0657vi, 3.375rem); /* --fluid-32-54 */
+  --f1:  clamp(1.25rem, 1.0739rem + 0.7512vi, 1.75rem); /* --fluid-20-28 */
+  --f0:  clamp(1.0625rem, 0.9965rem + 0.2817vi, 1.25rem); /* --fluid-17-20 */
+  --f-1: clamp(0.9375rem, 0.8935rem + 0.1878vi, 1.0625rem); /* --fluid-15-17 */
+  --f-2: clamp(0.8125rem, 0.7685rem + 0.1878vi, 0.9375rem); /* --fluid-13-15 */
+}
+
+/* Typography */
+/* General Sans typeface */
+@font-face {
+  font-family:'General Sans'; font-style:normal; font-weight: 400; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-Regular.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-Regular.woff?v=2.22") format("woff");
+}
+@font-face {
+  font-family:'General Sans'; font-style:italic; font-weight: 400; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-Italic.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-Italic.woff?v=2.22") format("woff");
+}
+
+@font-face {
+  font-family:'General Sans'; font-style:normal; font-weight: 500; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-Medium.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-Medium.woff?v=2.22") format("woff");
+}
+@font-face {
+  font-family:'General Sans'; font-style:italic; font-weight: 500; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-MediumItalic.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-MediumItalic.woff?v=2.22") format("woff");
+}
+
+@font-face {
+  font-family:'General Sans'; font-style:normal; font-weight: 600; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-Semibold.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-Semibold.woff?v=2.22") format("woff");
+}
+@font-face {
+  font-family:'General Sans'; font-style:italic; font-weight: 600; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-SemiboldItalic.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-SemiboldItalic.woff?v=2.22") format("woff");
+}
+
+@font-face {
+  font-family:'General Sans'; font-style:normal; font-weight: 700; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-Bold.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-Bold.woff?v=2.22") format("woff");
+}
+@font-face {
+  font-family:'General Sans'; font-style:italic; font-weight: 700; font-display: swap;
+  src: url("/assets/fonts/generalsans/GeneralSans-BoldItalic.woff2?v=2.22") format("woff2"),
+       url("/assets/fonts/generalsans/GeneralSans-BoldItalic.woff?v=2.22") format("woff");
+}
+
+@media (color-gamut: p3) {
+  :root {
+    --red-color:color(display-p3 1 0.231 0.184);
+    --blue-color:color(display-p3 0.2 0.137 0.937);
+    --yellow-color:color(display-p3 1 0.866 0.0862745098);
+    --grey-color:color(display-p3 0.2823529412 0.2823529412 0.2823529412);
+  }
+}
+body {
+  font-family:var(--font-family);
+  font-size:var(--base-font-size);
+  font-size:1rem;
+  padding:0;
+  margin:0;
+  background-color:var(--background-color);
+}
+* { box-sizing:border-box; }
+
+/*Base Type*/
+h1, h2, h3, h4, h5, h6, p, blockquote, li {
+  font-size:var(--f2);
+  font-weight:700;
+  line-height:1;
+  color:var(--heading-color);
+  letter-spacing:initial;
+  margin-bottom:0.25em;
+  margin-top:0;
+}
+h2, h3, h4, h5, h6 {margin-top:2rem;margin-bottom:2rem}
+p, blockquote, li {margin-bottom:1em}
+h1 { font-size:var(--f2); letter-spacing:-1.13px; margin-top:-9px;}
+h2 { font-size:var(--f1); }
+p, li  { font-size:var(--f0); line-height:1.5; font-weight:500; color:var(--text-color);}
+p[size=small] { font-size:var(--f-1); }
+p[size=annotation] { font-size:var(--f-1); font-weight:400; font-style:italic; }
+p[type=meta] { font-size:var(--f-2); font-family:var(--font-family-monospace); font-weight:700; line-height:2; }
+a {color:var(--blue-color); text-decoration: underline;}
+a:hover {color:var(--blue-color); text-decoration: none;}
+
+ul {
+  list-style-type:none;
+  padding:0;
+  margin:0;
+  margin-bottom:1em;
+  li { margin-bottom:0;}
+}
+ul:not(.posts-list) li:before {
+  content: "•";
+  margin-left:0.25em;
+  margin-right:0.5em;
+}
+ul.posts-list li { margin-bottom:1em }
+ul[type="tags"] {
+  display: flex;
+  flex-direction:row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  li {
+    display: block;
+    height:2rem;
+    width:auto;
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+    border-radius:1rem;
+    background: white;
+    font-weight: 500;
+    font-size:var(--f-2);
+    line-height:2rem;
+    a {
+      text-decoration:none;
+      color:black;
+    }
+  }
+}
+
+picture {
+  display:block;
+  position:relative;
+  width:100%;
+  height:auto;
+  img {width:100%;}
+  p {
+    font-size:var(--f-1);
+    font-style:italic;
+    font-weight:400;
+    max-width:320px;
+  }
+}
+@media (max-width: 800px) {
+  picture p {display:none;}
+}
+
+figure {
+  padding:0;
+  margin:0;
+}
+
+postcard {
+  display:block;
+  max-width:372px;
+  height:auto;
+  margin:0;
+  p, a {
+    color:var(--text-color);
+    text-decoration:none;
+    font-size:var(--f-1);
+    margin:0;
+  }
+}
+postcard[layout="image"] {
+  border: 2px solid black;
+  padding:12px;
+  margin-left:-12px;
+  margin-right:-12px;
+  box-sizing:content-box;
+}
+
+footer {
+  padding-top:var(--space-l);
+  padding-bottom:var(--space-l);
+}
+
+/* Layouts */
+body {
+  display:grid;
+  grid-template-columns:auto ;
+  grid-template-rows:auto;
+  grid-template-areas:"top"
+  "middle"
+  "bottom";
+
+  padding:var(--space-l);
+
+  column-gap:0;
+  row-gap:var(--space-l);
+
+  header  { grid-area:top;}
+  main    { grid-area:middle;}
+  footer  { grid-area:bottom;}
+}
+
+main[layout="home"] {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "left right";
+
+  column-gap: var(--space-l);
+  row-gap: 0;
+
+  picture {
+    grid-area:left;
+    max-width:404px;
+    justify-self: end;
+  }
+  content {
+    grid-area:right;
+    max-width:380px;
+    p {
+      font-size:var(--f-1);
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  main[layout="home"] {
+    grid-template-columns:1fr;
+    grid-template-areas: "left left" "right right";
+    row-gap: var(--space-l);
+    picture, content {
+      justify-self: start;
+      margin-left:auto;
+      margin-right:auto;
+    }
+  }
+}
+
+article[layout="post"], article[layout="page"] , footer {
+  display:grid;
+  --column-width: calc(50% - calc(var(--space-l) / 2));
+  grid-template-columns:var(--column-width) var(--column-width);
+  grid-template-rows: auto;
+  grid-template-areas: "left right";
+
+  column-gap: var(--space-l);
+  row-gap: 0;
+
+  picture { grid-area:left; max-width:auto; }
+  content { grid-area:right; max-width:auto; }
+}
+
+@media (max-width: 800px) {
+  article[layout="post"], article[layout="page"], footer {
+    grid-template-columns:1fr;
+    grid-template-areas: "left left" "right right";
+    row-gap: var(--space-l);
+  }
+}
+
+article[layout="page"] {
+  picture { grid-area:right; max-width:auto; }
+  content { grid-area:left; max-width:auto; }
+}
+
+@media (max-width: 800px) {
+  article[layout="page"] {
+    grid-template-areas: "right right" "left left";
+  }
+}
+
+/* Code */
+/* Code Styles */
+pre {
+  display:inline-block;
+  position: relative;
+  background: white;
+  border-radius: 0rem;
+  padding:1rem;
+  box-sizing:border-box;
+  border: 2px solid black;
+  overflow-x: scroll;
+  width:100%;
+}
+pre code {
+  display: inline-block;
+  position: relative;
+  font-size:var(--f0);
+  line-height:1.5em;
+  font-family:menlo, monospace !important;
+  font-weight: 500;
+  overflow-x: scroll;
+}
+pre {
+  --clr-unformatted:#1D1F1E;
+  --clr-keyword:    #FF3B2F;
+  --clr-punctuation:#3260FF;
+  --clr-string:     #FE901D;
+  --clr-comment:    #707070;
+  overflow-x:scroll;
+}
+
+/* Overrides */
+.clr-blue {color:var(--blue-color);}
+.clr-red {color:var(--red-color);}
+.clr-black {color:var(--text-color);}
+
+.mb0 {margin-bottom:0;}
+.fwb {font-weight:bold;}
+.tac {text-align:center;}

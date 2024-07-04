@@ -1,0 +1,26 @@
+---
+layout: default
+layout_class: page
+---
+<article layout="post" type="post">
+
+  {%- if page.image -%}
+    <picture>
+      <img alt="{{ page.image_alt }}" src="{{ page.image }}" >
+      {%- if page.image_alt -%}
+      <p>{{page.image_alt}}</p>
+      {%- endif -%}
+      <p></p>
+    </picture>
+  {%- endif -%}
+
+  <content itemprop="articleBody">
+
+    <header class="post-header">
+      <h1 class="post-title">{{ page.title | escape }}</h1>
+    </header>
+
+    {{ content }}
+  </content>
+
+</article>

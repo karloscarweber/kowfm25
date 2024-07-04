@@ -1,0 +1,56 @@
+---
+layout: default
+layout_class: home
+---
+
+  {%- if page.image -%}
+    <picture>
+      {%- if page.image_link -%}
+      <a href="{{ page.image_link }}">
+        <img alt="{{ page.image_alt }}" src="{{ page.image }}" >
+      </a>
+      {%- else -%}
+        <img alt="{{ page.image_alt }}" src="{{ page.image }}" >
+      {%- endif -%}
+    </picture>
+  {%- endif -%}
+
+  <content>
+
+    {%- if page.title -%}
+      <h1>{{ page.title }}</h1>
+    {%- endif -%}
+
+    {{ content }}
+
+    {%- if site.posts.size > 0 -%}
+      <h1>{{ page.list_title | default: "Blog" }}</h1>
+      <ul class="posts-list">
+        {%- for post in site.posts -%}
+        <li>
+          {%- assign date_format = "%b %-d, %Y" -%}
+          <!-- <p type="meta">{{ post.date | date: date_format }}</p> -->
+          {%- if post.image -%}
+          <postcard layout="image" >
+            <a href="{{ post.url | relative_url }}" >
+              <picture>
+                <img alt="{{ post.image_alt }}" src="{{ post.image }}" >
+              </picture>
+          {%- else -%}
+          <postcard>
+            <a href="{{ post.url | relative_url }}" >
+          {%- endif -%}
+              <p class="fwb">{{ post.title | escape }}</p>
+              {%- if site.show_excerpts -%}
+                <p>{{ post.excerpt }}</p>
+              {%- endif -%}
+            </a>
+          </postcard>
+        </li>
+        {%- endfor -%}
+      </ul>
+
+      <p>subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+    {%- endif -%}
+
+  </content>
