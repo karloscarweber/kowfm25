@@ -1,12 +1,13 @@
 ---
 layout: post
 title:  "New Blog"
+descrition: "Check out the new digs! Karl's brand new blog is live and everybody loves it. After accidentally nuking my last website I've finally pulled together a new personal website. kow.fm version 25."
 date:   2024-07-03 00:26:00 -0600
 categories: blog update
 excerpt: "After accidentally nuking my last website I've finally pulled together a new personal website. kow.fm version 25."
 image: /assets/images/homepage/imagen.png
-image_alt: An old Macintosh computer. <br> I tried my best to show my best. It's not going well.
-author: Karl Weber
+image_alt: An old Macintosh computer.
+author: Karl Oscar Weber
 ---
 
 It was a long and dusty road to get to this point. I had a balance of 0.94 cents on the prepaid cash card attached to my digital ocean account. I had been racking up my balance doing some client work. The "Unsuccessful charge" emails had starting coming in daily. Inbox zero was a distant dream. And then... An email saying that everything was deleted. My entire account, wiped. bummer. Almost 10 years of blog posts gone. No backups.

@@ -296,10 +296,18 @@ pre {
   background: white;
   border-radius: 0rem;
   padding:1rem;
+  margin:0;
   box-sizing:border-box;
   border: 2px solid black;
   overflow-x: scroll;
   width:100%;
+
+  --clr-unformatted:#1D1F1E;
+  --clr-keyword:    #FF3B2F;
+  --clr-punctuation:#3260FF;
+  --clr-string:     #FE901D;
+  --clr-comment:    #707070;
+  overflow-x:scroll;
 }
 pre code {
   display: inline-block;
@@ -309,14 +317,6 @@ pre code {
   font-family:menlo, monospace !important;
   font-weight: 500;
   overflow-x: scroll;
-}
-pre {
-  --clr-unformatted:#1D1F1E;
-  --clr-keyword:    #FF3B2F;
-  --clr-punctuation:#3260FF;
-  --clr-string:     #FE901D;
-  --clr-comment:    #707070;
-  overflow-x:scroll;
 }
 
 /* Overrides */
