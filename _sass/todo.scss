@@ -86,6 +86,8 @@
     --grey-color:color(display-p3 0.2823529412 0.2823529412 0.2823529412);
   }
 }
+/* Reset/base styles and stuff */
+figure {padding:0;margin:0;}
 body {
   font-family:var(--font-family);
   font-size:var(--base-font-size);
@@ -107,7 +109,7 @@ h1, h2, h3, h4, h5, h6, p, blockquote, li {
   margin-top:0;
 }
 h2, h3, h4, h5, h6 {margin-top:2rem;margin-bottom:2rem}
-p, blockquote, li {margin-bottom:1em}
+p, blockquote, li, figure {margin-bottom:1em}
 h1 { font-size:var(--f2); letter-spacing:-1.13px; margin-top:-9px;}
 h2 { font-size:var(--f1); }
 p, li  { font-size:var(--f0); line-height:1.5; font-weight:500; color:var(--text-color);}
@@ -168,11 +170,6 @@ picture {
 }
 @media (max-width: 800px) {
   picture p {display:none;}
-}
-
-figure {
-  padding:0;
-  margin:0;
 }
 
 postcard {
@@ -293,7 +290,7 @@ article[layout="page"] {
 pre {
   display:inline-block;
   position: relative;
-  background: white;
+  background: transparent;
   border-radius: 0rem;
   padding:1rem;
   margin:0;
