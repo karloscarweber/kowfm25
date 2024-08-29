@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "New Blog"
-descrition: "Check out the new digs! Karl's brand new blog is live and everybody loves it. After accidentally nuking my last website I've finally pulled together a new personal website. kow.fm version 25."
+description: "Check out the new digs! Karl's brand new blog is live and everybody loves it. After accidentally nuking my last website I've finally pulled together a new personal website. kow.fm version 25."
 date:   2024-07-03 00:26:00 -0600
 categories: blog update
 excerpt: "After accidentally nuking my last website I've finally pulled together a new personal website. kow.fm version 25."
@@ -57,7 +57,7 @@ main[layout="home"] {
 </main>
 {% endhighlight %}
 
-This makes a two column grid with equal widhth for both sides. I put it in a vertical column when things get too small:
+This makes a two column grid with equal width for both sides. I put it in a vertical column when things get too small:
 
 {% highlight css %}
 @media (max-width: 800px) {
@@ -68,3 +68,9 @@ This makes a two column grid with equal widhth for both sides. I put it in a ver
   }
 }
 {% endhighlight %}
+
+I've tried to push things to be incredibly simple, with a little style on this build. I think I've achieved it. I hit all my goals. Looks nice, Shipped fast, Nothing broken.
+
+All in all it turned out alright.
+
+-kow
