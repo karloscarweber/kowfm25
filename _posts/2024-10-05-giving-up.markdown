@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Giving Up"
+description: "Karl talks about the intense burnout and failure he's been experiencing lately."
+date:   2024-10-05 00:26:00 -0600
+categories: blog programming-languages kona wren
+excerpt: "I give up on a lot of stuff to take a break, catch my breath, and rest up a little. I'm tired."
+image: /assets/blog/giving-up/gingin_up.jpg
+image_alt: A bike, against a dark wall. It's a great bike in great shape. The metaphorical idea is that they ride aint there because they gave up. Just like me. Gonna take a rest.
+author: Karl Oscar Weber
+---
+
+Hi Friends,
+
+It's me, Karl,
+
+I've just been feeling incredibly depressed and burnt out lately. Some things happened at work that were not completely in my control, and some other things that were in my control and I just really failed. I think My EGO has been hit and beat up. I'm unmotivated every day. I'm not sleeping well. I'm barely getting my current work done. I have looming deadlines that are still far off, that I want to hit early, but now I feel like I'm gonna come in just before the wire. Just before they are due.
+
+When I was younger in my career I would get really depressed when I couldn't deliver something at work. I would feel like a complete failure, that at any moment I should be fired and just jettisoned. Hindsight has provided perspective, that I was too hard on myself. A good environment is a safe environment where we can learn and grow. Make mistakes and improve. Capitalism prompts a pressure to deliver. If we don't, we could lose our jobs and shit can hit the fan. 
+
+I've lived with that pressure more than most, I think. At least far more than other folks I know in the industry. Which is a bummer. Constant fight or flight mode does not a healthy person make. I've talked before about the stresses of being laid off and trying to build a new business as fast as possible. It's very hard, with lots of failure mixed in.
+
+I don't know. I'm just thinking: How do I get really stable and reliable again without fucking up? Without pushing myself to the breaking point? Folks are depending on me and I wanna deliver.
+
+I haven't even talked about my family and kiddos. I've sacrificed so much time and attention with them for my career to still end up at, like.... the bottom? I can't just work way more to make things better and ignore them anymore.
+
+Honestly this whole experience has made me want to have less responsibility, expenses, and worries. Just less of everything, but more time. More time to rest, be healthy, be with my family while they are still really little. If I'm really broke, but calm and dependable, that's a good trade off for me.
+
+I'm gonna do a lot less from now on, but just deliver. I think I need to slow down.
+
+-kow

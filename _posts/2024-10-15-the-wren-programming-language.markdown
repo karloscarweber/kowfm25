@@ -2,7 +2,7 @@
 layout: post
 title:  "The wren programming language"
 description: "I talk all about the work I've been doing on the side writing my own programming language, and the language I discovered along the way: Wren."
-date:   2024-09-02 00:26:00 -0600
+date:   2024-10-15 00:26:00 -0600
 categories: blog programming-languages kona wren
 excerpt: "I've been writing my own programming language, named Kona, and along the way I discoverd and really fell in love with Wren."
 image: /assets/blog/images/the-wren-programming-language/picture_of_a_bird.png
@@ -18,7 +18,9 @@ Kona isn't ready yet. In fact I've barely begun the compiler. The thing about wr
 
 I was immediately intrigued. It's a small, fast scripting language. comparable in speed to Lua, But with a heavily simplified object oriented syntax. Purpose built to be embedded in other applications, like Lua, but with a simpler API.
 
-The best thing about this language, is how *EASY* it is to learn it's internals. Volumes of comments and descriptions populate the source code, making it easy to poke around and understand how it all works. In my pursuit of writing Kona, it was never my intention of building the whole thing from scratch. I mean, I want to *Finish* the project after all. I was content to start by writing Kona's interpreter in Lua, then learning C and porting it to that. Now I'm emboldened to write Kona's compiler in C, and target Wren's VM. Which excites me.
+The best thing about this language, is how *EASY* it is to learn it's internals. Volumes of comments and descriptions populate the source code, making it easy to poke around and understand how it all works. In my pursuit of writing Kona, it was never my intention of building the whole thing from scratch. I mean, I want to *Finish* the project after all. I was content to start by writing Kona's interpreter in Lua, then learning C and porting it to that. Now I'm emboldened to write Kona's compiler in C, and target Wren's VM. Which excites the code.
+
+Anyways, to actually ship the project I want the project to be much smaller than a fully new language. Targeting a VM with unique syntax seems like a good tradeoff.
 
 ## How does a programming language work anyway?
 

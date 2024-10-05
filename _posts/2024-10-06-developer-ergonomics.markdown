@@ -2,7 +2,7 @@
 layout: post
 title: "Developer Ergonomics"
 description: "Let's start thinking about the effect our tools have on us. How it changes what we produce, or precludes us from producing certain stuff."
-date: 2024-09-05 00:26:00 -0600
+date: 2024-10-06 00:26:00 -0600
 categories: blog developer-ergonomics html css kona wren react
 excerpt: "For years I've been pursuing better tools and better tooling, believing that perhaps I can make myself more productive and happier. But maybe the answer is making myself comfortable?"
 image: /assets/blog/images/developer-ergonomics/really_nice_chair.png
