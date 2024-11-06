@@ -2,25 +2,27 @@
 layout: post
 title:  "The wren programming language"
 description: "I talk all about the work I've been doing on the side writing my own programming language, and the language I discovered along the way: Wren."
-date:   2024-10-15 00:26:00 -0600
+date:   2024-12-15 00:26:00 -0600
 categories: blog programming-languages kona wren
 excerpt: "I've been writing my own programming language, named Kona, and along the way I discoverd and really fell in love with Wren."
-image: /assets/blog/images/the-wren-programming-language/picture_of_a_bird.png
+image: /assets/blog/the-wren-programming-language/picture_of_a_bird.jpg
 image_alt: Code written in then Wren programming language.
 author: Karl Oscar Weber
 ---
 
 Hi Friends.
 
-A while ago I declared online that I really really hated Javascript. I still don't like it, but my hate just doesn't seem to go as deep. Then I declared that I would replace it with something better. In that pursuit I beg working on my own language, named [Kona](https://konascript.org). Intended to be compiled to WASM, and shipped along in your browser like a 200KB party favor.
+A while ago I declared online that I really really hated Javascript. Lately, I still don't like it, but my hate just doesn't seem to go as deep. Then I declared that I would replace it with something better. In that pursuit I began working on my own language, named [Kona](https://konascript.org). Intended to be compiled to WASM, and shipped in your browser like a 200KB party favor.
 
-Kona isn't ready yet. In fact I've barely begun the compiler. The thing about writing a programming language is that you need to know how to do that. I began by reading the book [Crafting Interpreters](https://craftinginterpreters.com), which is absolutely excellent. But before I could finish I needed to go learn **C**, A language I had never written. Then I went and I learned [Lua](https://lua.org), Thinking I could write all of Kona, in Lua, and ship it as a single binary. I got pretty far there, and learned a lot. But then I stumbled upon [Wren](https://wren.io), a small, object oriented language written by Robert Nystrom the author behind crafting interpreters.
+Kona isn't ready yet. In fact I've barely begun the compiler. The thing about writing a programming language is that you need to know how to do that. If you don't know how to do that, well... then you can't do it. So I decided to learn.
+
+I began by reading the book [Crafting Interpreters](https://craftinginterpreters.com), which is absolutely excellent. But before I could finish I needed to go learn **C**, A language I had never written. Then I went and I learned [Lua](https://lua.org), Thinking I could write all of Kona, in Lua, and ship it as a single binary. I got pretty far there, and learned a lot. But then I stumbled upon [Wren](https://wren.io), a small, object oriented language written by Robert Nystrom the author behind crafting interpreters.
 
 I was immediately intrigued. It's a small, fast scripting language. comparable in speed to Lua, But with a heavily simplified object oriented syntax. Purpose built to be embedded in other applications, like Lua, but with a simpler API.
 
-The best thing about this language, is how *EASY* it is to learn it's internals. Volumes of comments and descriptions populate the source code, making it easy to poke around and understand how it all works. In my pursuit of writing Kona, it was never my intention of building the whole thing from scratch. I mean, I want to *Finish* the project after all. I was content to start by writing Kona's interpreter in Lua, then learning C and porting it to that. Now I'm emboldened to write Kona's compiler in C, and target Wren's VM. Which excites the code.
+The best thing about this language, is how *EASY* it is to learn it's internals. Volumes of comments and descriptions populate the source code, making it easy to poke around and understand how it all works. In my pursuit of writing Kona, it was never my intention of building the whole thing from scratch. I mean, I want to *Finish* the project after all. I was content to start by writing Kona's interpreter in Lua, then learning C and porting it to that. Now I'm emboldened to write Kona's compiler in C, and target Wren's VM. To execute the code.
 
-Anyways, to actually ship the project I want the project to be much smaller than a fully new language. Targeting a VM with unique syntax seems like a good tradeoff.
+Anyways, to actually ship the project I want the project to be much smaller than fully a new language. Targeting a VM with unique syntax seems like a good tradeoff. Although, as I go along, I know I'll find myself making those changes.
 
 ## How does a programming language work anyway?
 
@@ -28,7 +30,7 @@ I should explain how we get a new language at all.
 
 Computer processors each have their own dialect of instructions. x86, RISC-V, ARM, etc... Learning to write programs for each specific architecture is arduous. So some smart folks decided that they would write a program that would transform simpler instructions, into the specific instructions of a processor. A compiler.
 
-Compilers have quite a few parts, but the top most part, called the front end, scans code in it's particular language, and translates them into tokens. String, Number, Name, Operator. Then takes these tokens and translates them into the machine code of whatever computer your targeting.
+Compilers have quite a few parts, but the top most part, called the front end, scans code in it's particular language, and translates it into tokens. String, Number, Name, Operator. Then takes these tokens and translates them into the machine code of whatever computer your targeting.
 
 Scripting languages are a bit different. Instead of compiling the code to native machine code, scripting languages compile your code into an intermediate, but internally represented Byte Code. The scripting language then runs the byte code through it's Virtual Machine or VM, and executes the program accordingly.
 
@@ -46,7 +48,7 @@ System.print(jim.name)
 // > Jimmy
 ```
 
-We have words, symbols, spaces, brackets, all sorts of stuff. Along with a litany of rules and practices you'll just need to learn about the language. All in the pursuit to make our lives a bit easier. These rules and how it influences the way you write your programs, the syntax, determines what's easy, what's possible, and what's enjoyable. That is the sweet spot I'm trying to pursue.
+We have words, symbols, spaces, curly braces, all sorts of stuff. Along with a litany of rules and practices you'll just need to learn about the language. All in the pursuit to make our lives a bit easier. These rules and how it influences the way you write your programs, the syntax, determines what's easy, what's possible, and what's enjoyable. That is the sweet spot I'm trying to pursue.
 
 ### Tokens
 
@@ -67,16 +69,16 @@ Now, Wren's compiler is a one-pass compiler. That means these intermediate token
 
 Consider this structure:
 ```wren
-class Nuts
+class Nuts {
   go { _nuts }
   go=(v) { _nuts = v }
   construct new() {}
-end
+}
 ```
 
 We define a class, using a keyword **class**, and add some setters, getters, and a constructor. In wren, the method signature is part of it's name, and all properties, called fields, are private, so you need to add setters and getters.
 
-Instead of marking the methods with `def` or `func` or something else, they are simply Naked `names` with blocks after them. `name + block` is a simple patter for making a method. Now let's call some methods:
+Instead of marking the methods with `def` or `func` or something else, they are simply Naked `names` with blocks after them. `name + block` is a simple pattern for making a method. Now let's call some methods:
 ```wren
 var nutty = Nuts.new()
 nutty.go
@@ -98,17 +100,25 @@ Here we show some more goodies. A var keyword to tell the compiler that nutty is
 [RIGHT_PAERN] => ) 21..21
 ```
 
-Now whitespace is usually ignored, but so we don't add those, but we do want to know what each token is. You can tell from the first token and the second, that a `VARIABLE` declaration immediately followed by a `NAME` means that we want to set aside some storage. The bytecode to do that is then emitted. The next token is `ASSIGNMENT`, a binary operator. It takes the next `STATEMENT`, and assigns it to the name that came before. At this point we know that what comes next needs to be a valid statement, so the compiler begins interpreting the next tokens assuming this. If it runs into an unexpected situation, it can emit an error.
+Now whitespace is usually ignored, so we don't add those, but we do want to know what each token is. You can tell from the first token and the second, that a `VARIABLE` declaration immediately followed by a `NAME` means that we want to set aside some storage. The bytecode to do that is then emitted. The next token is `ASSIGNMENT`, a binary operator. It takes the next `STATEMENT`, and assigns it to the name that came before. At this point we know that what comes next needs to be a valid statement, so the compiler begins interpreting the next tokens assuming this. If it runs into an unexpected situation, it can emit an error.
 
 It may not seem immediately recognizable, but a single pass compiler means that certain features just aren't feasible, or pretty difficult. Additionally, to keep the syntax simple, certain other features are not as easy. Consider free floating functions:
 ```wren
 myFunction()
 ```
 
-In an object oriented language like Wren, we have a name token, and an opening and closing paren token. The name is resolved at runtime, and the following tokens become part of the name to make an invocation. But what is it being invoked on? remember that the parameter list, or at least it's arity, are part of a methods signature, so a free floating function, as an object, would have to be implicitly called against `this`, like other naked methods are. But what is this? If you call `myFunction()` inside of a method in a class or outside in a free space what is the value of `this`? It's different in each situation.
+In an object oriented language like Wren, we have a name token, and an opening and closing paren token. The name is resolved at runtime, and the following tokens become part of the name to make an invocation. But what is it being invoked on? In Wren the parameter list, or at least it's arity, are part of a methods signature, so a free floating function, as an object, would have to be implicitly called against `this`, like other naked methods are. But what is this? If you call `myFunction()` inside of a method in a class or outside in a free space what is the value of `this`? It's different in each situation.
 
 This is where the design of the language and it's syntax begin to have consequences. What do we want to make easy in a language? And what are the consequences for making something easy.
 
+## Wren
+
+Let's you do some great thing with method definitions in classes. It's a syntax that I really really like:
+
+```wren
+class Person {
+}
+```
 ## My Goal
 
 Kona is intended for building UIs and interfaces on the web. A general purpose programming language, sure, but focused on a single platform. That focus means that syntax limitations, and in effect the design of the language, needs to be reconsidered at every step.

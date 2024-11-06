@@ -2,7 +2,7 @@
 layout: post
 title: "Systems Work Better With Slack."
 description: "Let's talk about capacity, and having enough capacity."
-date: 2024-10-20 00:26:00 -0600
+date: 2024-12-20 00:26:00 -0600
 categories: blog systems slack
 excerpt: "..."
 image: /assets/blog/images/systems-work-better-with-slack/popsicle_stand.png

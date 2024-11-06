@@ -2,7 +2,7 @@
 layout: post
 title: "What if we had to launch tomorrow?"
 description: "Karl waxes poetic about the philosophy of getting a version done quick and iterating much faster on smaller chunks"
-date: 2024-10-25 00:26:00 -0600
+date: 2024-12-25 00:26:00 -0600
 categories: blog engineering programming pomodoro focus iteration
 excerpt: "...Part of this philosophy is about estimating my time, but undercutting it by trying to get SOME version complete much sooner..."
 image: /assets/blog/images/what-if-we-had-to-launch-tomorrow/popsicle_stand.png

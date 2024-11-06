@@ -8,6 +8,12 @@ This is... kinda based on a jekyll theme. I stripped all the styles and almost a
 
 Make a blog that won't get deleted if I don't pay a hosting bill. Have something that's very easy to update. Be extremely minimal with markup and design. My hope is that by removing so much that is *"custom"* or *"fancy"*, I can get to the core of what a blog experience requires.
 
+## Run it
+
+```bash
+jekyll serve
+```
+
 ### Customize navigation links
 
 I don't actually now how this part works. I'll need to figure out maybe.
