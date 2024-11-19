@@ -111,7 +111,8 @@ h1, h2, h3, h4, h5, h6, p, blockquote, li {
 h2, h3, h4, h5, h6 {margin-top:2rem;margin-bottom:2rem}
 p, blockquote, li, figure {margin-bottom:1em}
 h1 { font-size:var(--f2); letter-spacing:-1.13px; margin-top:-9px;}
-h2 { font-size:var(--f1); }
+h2 { font-size:var(--f2); }
+h3 { font-size:var(--f1); }
 p, li  { font-size:var(--f0); line-height:1.5; font-weight:500; color:var(--text-color);}
 p[size=small] { font-size:var(--f-1); }
 p[size=annotation] { font-size:var(--f-1); font-weight:400; font-style:italic; }
