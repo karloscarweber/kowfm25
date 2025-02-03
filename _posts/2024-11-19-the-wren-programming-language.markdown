@@ -2,11 +2,11 @@
 layout: post
 title:  "The wren programming language"
 description: "I talk all about the work I've been doing on the side writing my own programming language, and the language I discovered along the way: Wren."
-date:   2024-11-19 00:26:00 -0600
+date: 2024-11-19 00:26:00 -0600
 categories: blog programming-languages kona wren
 excerpt: "I've been writing my own programming language, named Kona, and along the way I discoverd and really fell in love with Wren."
 image: /assets/blog/the-wren-programming-language/wren.svg
-image_alt: Code written in then Wren programming language.
+image_alt: A little bird, a Wren, with the word, wren, written on it.
 author: Karl Oscar Weber
 ---
 
@@ -37,7 +37,7 @@ Scripting languages are a bit different. Instead of compiling the code to native
 The journey to get from your code, to tokens, to byte code, and then finally to be executed, offers a host of benefits or disadvantages, depending on your choice of language. New languages are made every day, or existing ones are improved. All in the pursuit to make certain tasks easier.
 
 Consider this code:
-```wren
+```
 class Person {
   name { _name }
   construct new(name) { _name = name }
@@ -53,7 +53,7 @@ We have words, symbols, spaces, curly braces, all sorts of stuff. Along with a l
 ### Tokens
 
 The parser takes source code and converts it to tokens. Consider this:
-```wren
+```
 var thing = "whatever"
 ```
 
@@ -68,7 +68,7 @@ Which, when parsed, produces the following tokens:
 Now, Wren's compiler is a one-pass compiler. That means these intermediate tokens are never really created, and Byte Code is emitted directly. Wren's compiler has a single token look-ahead, look-behind, So it only really knows what's immediately ahead and behind a token. This severely limits certain syntax possibilities, but in turn, it makes the parser very simple.
 
 Consider this structure:
-```wren
+```
 class Nuts {
   go { _nuts }
   go=(v) { _nuts = v }
@@ -79,7 +79,7 @@ class Nuts {
 We define a class, using a keyword **class**, and add some setters, getters, and a constructor. In wren, the method signature is part of it's name, and all properties, called fields, are private, so you need to add setters and getters.
 
 Instead of marking the methods with `def` or `func` or something else, they are simply Naked `names` with blocks after them. `name + block` is a simple pattern for making a method. Now let's call some methods:
-```wren
+```
 var nutty = Nuts.new()
 nutty.go
 // > null
@@ -103,7 +103,7 @@ Here we show some more goodies. A var keyword to tell the compiler that nutty is
 Now whitespace is usually ignored, so we don't add those, but we do want to know what each token is. You can tell from the first token and the second, that a `VARIABLE` declaration immediately followed by a `NAME`. This means that we want to set aside some storage. The bytecode to do that is then emitted. The next token is `ASSIGNMENT`, a binary operator. It takes the next `STATEMENT`, and assigns it to the name that came before. At this point we know that what comes next needs to be a valid statement, so the compiler begins interpreting the next tokens assuming this. If it runs into an unexpected situation, it can emit an error.
 
 It may not seem immediately recognizable, but a single pass compiler means that certain features just aren't feasible, or pretty difficult. Additionally, to keep the syntax simple, certain other features are not as easy. Consider free floating functions:
-```wren
+```
 myFunction()
 ```
 
@@ -111,11 +111,11 @@ In an object oriented language like Wren, we have a name token, and an opening a
 
 This is where the design of the language and it's syntax begin to have consequences. What do we want to make easy in a language? And what are the consequences for making something easy.
 
-Anyways. I really like Wren, and I'm excited to see where that language goes. It is a bit restricted from what I'd like to do. Classes can't be reopened, method and function calling is explicit, which is nice, but restricts certain patterns. The compiler is single pass which means that complicated features like optional parens are not feasible. 
+Anyways. I really like Wren, and I'm excited to see where that language goes. It is a bit restricted from what I'd like to do. Classes can't be reopened, method and function calling is explicit, which is nice, but restricts certain patterns. The compiler is single pass which means that complicated features like optional parens are not feasible.
 
 ## My Goal
 
-Kona is intended for building UIs and interfaces on the web. A general purpose programming language, sure, but focused on a single platform. That focus means that syntax limitations, and in effect the design of the language, needs to be reconsidered at every step. i'm aiming for a multipass compiler to give some more complicated syntax features. Built in JSON, and HTML parsing. Built in HTML templates, Builders, class reopening, functions as first class citizens, and object tree diffing.
+Kona is intended for building UIs and interfaces on the web. A general purpose programming language, sure, but focused on a single platform. That focus means that syntax limitations, and in effect the design of the language, needs to be reconsidered at every step. i'm aiming for a multi-pass compiler to give some more complicated syntax features. Built in JSON, and HTML parsing. Built in HTML templates, Builders, class reopening, functions as first class citizens, and object tree diffing.
 
 The target is the web, a Programming language VM as a WASM module that listens to and interacts with the webpage through the available APIs. We'll see how far I get.
 

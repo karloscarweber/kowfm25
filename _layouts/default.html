@@ -8,15 +8,14 @@ layout_class: home
   {%- include head.html -%}
 
   <body>
-
-    {%- include header.html -%}
-
-    <main layout="{{ layout.layout_class }}" aria-label="Content">
-      {{ content }}
-    </main>
-
-    {%- include footer.html -%}
-
+    <page>
+      <main layout="{{ layout.layout_class }}" aria-label="Content">
+        {%- include header.html -%}
+        
+        {{ content }}
+      </main>
+      {%- include footer.html -%}
+    </page>
   </body>
 
   <script type="module" src="/assets/scripts.js"></script>

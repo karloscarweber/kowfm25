@@ -6,6 +6,7 @@ categories: blog update
 excerpt: "Yes that's right, Capsule is getting bigger, better, stronger! A new drug is in stock. Meet one of my favorite people."
 # image: /assets/images/homepage/imagen.png
 # image_alt: An old Macintosh computer."
+layout_class: vertical
 ---
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.

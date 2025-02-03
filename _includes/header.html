@@ -1,25 +1,17 @@
-<header role="banner">
+<header>
+  <a class="knight" href="/"> <img src="/assets/images/green-knight-60x60.png" width="32px" height="32px" /> </a>
 
-  <div class="wrapper">
-
-    <a href="/"> <img src="/assets/images/green-knight-60x60.png" width="60px" height="60px" /> </a>
-
-    {%- assign default_paths = site.pages | map: "path" -%}
-    {%- assign page_paths = site.header_pages | default: default_paths -%}
-    <!-- <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a> -->
-
-<!--
-    {%- if page_paths -%}
-      <nav class="site-nav">
-
-          {%- for path in page_paths -%}
-            {%- assign my_page = site.pages | where: "path", path | first -%}
-            {%- if my_page.title -%}
-            <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-            {%- endif -%}
-          {%- endfor -%}
-      </nav>
-    {%- endif -%}
--->
-  </div>
+  {%- assign default_paths = site.pages | map: "path" -%}
+  {%- assign page_paths = site.header_pages | default: default_paths -%}
+  {% assign years = site.posts
+    | group_by_exp: "post", "post.date | date: '%Y'"
+  %}
+  
+  <links>
+    <ul>
+      <li><a href="/books">books.</a></li>
+      <li><a href="https://konascript.org">kona.</a></li>
+      <li><a href="/blog">blog.</a></li>
+    </ul>
+  </links>
 </header>

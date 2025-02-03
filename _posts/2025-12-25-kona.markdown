@@ -1,0 +1,44 @@
+---
+layout: post
+title: "Kona"
+description: "Kona is a small, fast, web language."
+date: 2025-12-25 00:10:00 0600
+categories: html css javascript kona programming-languages
+excerpt: ""
+image: /assets/blog/kona/kona_badge.jpg
+image_alt: The Kona logo for funs and kicks.
+author: Karl Oscar Weber
+---
+
+Kona is my effort to write a fucking sick ass programming language to replace javascript, Which I hate. Absolutely hate that thing. Hate can take you far my friends! No I'm playin'. I don't like javascript, but it's alright.  Kona is a replacement I'm working on, but it's more than that. I've got some good ideas for this thing. To bootstrap a language and build it you've gotta do some things
+
+### An education
+
+First, understanding, even, how to build a programming language, for starters. To accomplish that task I picked up Crafting Interpreters. A book by Robert Nystrom, Crafting Interpreters teaches you to make a fast programming language, first in Java, and then in C. If you're writing a programming language you'll be hard pressed to make something faster without using C. I had to learn C to finish the book, and C is alright, but I'm not that good at it. I should probably write a few applications to really get the hang of it. C isn't overly difficult, but so much of the language is esoteric. I was confused or lost with types a lot of the time.
+
+A couple of weeks ago I decided that I wanted to try Rust out, to see if it might be easier to Grok than C. Perhaps less esoteric. And it really is less esoteric. Rust is a fantastic language. Lot's of fun. The compiler really helps you to understand what's wrong with your code and how to fix it. Rust's safety features protect you from a lot of things that can become a problem in C quite easily. Rust uses an idea behind ownership and borrowing of values to manage the memory of things. The borrow checker is what it's called. Most of the time it's intuitive and easy to understand, other times it's hard to understand why it's mad at me.
+
+To write Kona, I decided to start smaller than a full language, and write a smaller, toy language first, named Mage. It has Math and functions, and very simple branching. My hope is that over time as I think of new things to add to the VM, or to try to write a JIT, I start with Mage, that has few moving parts. But I'm getting ahead of myself.
+
+A few days ago I decided to try zig out. Zig is a small, low level language that is also billed as being a replacement to C. It' has C like syntax, and manual memory management. The language is intentionally kept very small, the standard library and the language itself offers no hidden control flow, or allocations. It feels like a better, simpler C, but with type names that actually make sense. Theres a lot more to the language too, but I've only just dug in.
+
+anyways, so I started to rewrite Mage in Zig, so that I can use Mage as a base to write Kona, and I'm loving it so far.
+
+### Kona features
+
+All the features are speculative so far, but I'm making quick progress. The pieces that I really want to have are:
+
+* Runs in the browser as a WASM VM.
+* Fast.
+* Native HTML, CSS, and JSON support.
+* Concurrent or async.
+* Observables.
+* Multi-paradigm Functional and Object oriented.
+* First class functions.
+* Native, in file component templates.
+* Mixins.
+* Limited meta programming.
+* Pattern matching.
+* JIT compiled.
+
+To get there you gotta build brick by brick.
