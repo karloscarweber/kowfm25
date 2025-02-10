@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 :root {
-  --font-family: 'General Sans', -apple-system, Helvetica, Arial, sans-serif;
+  --font-family: 'GeneralSans-Variable', 'GeneralSans-VariableItalic', -apple-system, Helvetica, Arial, sans-serif;
   --font-family-monospace: Menlo, Courier New, monospace;
   --base-font-size:16px;
   --base-font-weight:400;
@@ -39,48 +39,40 @@
 
 /* Typography */
 /* General Sans typeface */
-@font-face {
-  font-family:'General Sans'; font-style:normal; font-weight: 400; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-Regular.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-Regular.woff?v=2.22") format("woff");
-}
-@font-face {
-  font-family:'General Sans'; font-style:italic; font-weight: 400; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-Italic.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-Italic.woff?v=2.22") format("woff");
-}
 
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0;
+*
+* available axes:
+'wght' (range from 200.0 to 700.0
+*/
 @font-face {
-  font-family:'General Sans'; font-style:normal; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-Medium.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-Medium.woff?v=2.22") format("woff");
+  font-family: 'GeneralSans-Variable';
+  src: url('/assets/fonts/generalsans/GeneralSans-Variable.woff2') format('woff2'),
+       url('/assets/fonts/generalsans/GeneralSans-Variable.woff') format('woff'),
+       url('/assets/fonts/generalsans/GeneralSans-Variable.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
 }
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0;
+*
+* available axes:
+'wght' (range from 200.0 to 700.0
+*/
 @font-face {
-  font-family:'General Sans'; font-style:italic; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-MediumItalic.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-MediumItalic.woff?v=2.22") format("woff");
-}
-
-@font-face {
-  font-family:'General Sans'; font-style:normal; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-Semibold.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-Semibold.woff?v=2.22") format("woff");
-}
-@font-face {
-  font-family:'General Sans'; font-style:italic; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-SemiboldItalic.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-SemiboldItalic.woff?v=2.22") format("woff");
-}
-
-@font-face {
-  font-family:'General Sans'; font-style:normal; font-weight: 700; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-Bold.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-Bold.woff?v=2.22") format("woff");
-}
-@font-face {
-  font-family:'General Sans'; font-style:italic; font-weight: 700; font-display: swap;
-  src: url("/assets/fonts/generalsans/GeneralSans-BoldItalic.woff2?v=2.22") format("woff2"),
-       url("/assets/fonts/generalsans/GeneralSans-BoldItalic.woff?v=2.22") format("woff");
+  font-family: 'GeneralSans-VariableItalic';
+  src: url('/assets/fonts/generalsans/GeneralSans-VariableItalic.woff2') format('woff2'),
+       url('/assets/fonts/generalsans/GeneralSans-VariableItalic.woff') format('woff'),
+       url('/assets/fonts/generalsans/GeneralSans-VariableItalic.ttf') format('truetype');
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: italic;
 }
 
 @media (color-gamut: p3) {
@@ -126,7 +118,7 @@ h2 { font-size:var(--f3); }
 h3 { font-size:var(--f2); }
 h4 { font-size:var(--f1); }
 p, blockquote, li, figure {margin-bottom:1em}
-p, li  { font-size:var(--f0); line-height:1.5; font-weight:600; color:var(--text-color);}
+p, li  { font-size:var(--f0); line-height:1.5; font-weight:540; color:var(--text-color);}
 p[size=small] { font-size:var(--f-1); }
 p[size=annotation] { font-size:var(--f-1); font-weight:400; font-style:italic; }
 p[type=meta] { font-size:var(--f-2); font-family:var(--font-family-monospace); font-weight:700; line-height:2; }
