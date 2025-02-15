@@ -10,7 +10,7 @@ image_alt: The Kona logo for funs and kicks.
 author: Karl Oscar Weber
 ---
 
-Kona is my effort to write a fucking sick ass programming language to replace javascript, Which I hate. Absolutely hate that thing. Hate can take you far my friends! No I'm playin'. I don't like javascript, but it's alright.  Kona is a replacement I'm working on, but it's more than that. I've got some good ideas for this thing. To bootstrap a language and build it you've gotta do some things
+Kona is my effort to write a fucking sick ass programming language to replace javascript, Which I hate. Absolutely hate that thing. Hate can take you far my friends! No I'm playin'. I don't like javascript, but it's alright.  Kona is a replacement I'm working on, but it's more than that. I've got some good ideas for this thing. To bootstrap a language and build it you've gotta do some things...
 
 ### An education
 

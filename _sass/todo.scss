@@ -397,6 +397,10 @@ page {
     max-width: var(--max-container);
     justify-self: start;
     padding:var(--space-s);
+    
+    /* fixes overflow because of long code blocks. */
+    display:inline-block;
+    max-width: 100vw;
   }
   footer  {
     grid-area:bottom;
@@ -494,7 +498,7 @@ footer {
 
 main content {
   p { text-align:justify; }
-  & > *:not(img, picture, ul, columnsheader, flex, gallery) {
+  & > *:not(img, picture, ul, columnsheader, flex, gallery, div:has(.highlight)) {
     max-width: 75%;
     @media (max-width: 765px) {
       max-width: 100%;

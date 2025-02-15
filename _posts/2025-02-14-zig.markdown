@@ -1,0 +1,237 @@
+---
+layout: post
+title: "Zig"
+description: "I talk a little about the Zig progrmaming language. The book I read about it."
+date: 2025-02-14 00:30:00 0600
+categories: blog programming-languages zig mage kona
+excerpt: "I mean, I didn't really get memory management until this thing. Stack and Heap were amorphous. Now it's clear."
+---
+
+I picked up this new book: Introduction to Zig, a couple of weeks ago. I finished it today, and started to write a new programming language in it, named Mage.
+
+Zig is small, simple, low level programming language suitable for high performance, embedded, and systems level tasks. It's billed as a replacement to C. Which I think it is. And offers great interoperability with C. Like it's really good. I initially became interested in learning Zig, because I kept seeing Rust compared to Zig, and I was learning Rust at the time. (A month ago). I really like Rust, but to me, Zig feels like a simpler alternative, at least on the memory management side.
+
+### What does it look like:
+
+Here's some Zig code:
+
+```zig
+const std = @import("std");
+const testing = std.testing;
+
+export fn add(a: i32, b: i32) i32 {
+		return a + b;
+}
+
+test "basic add functionality" {
+		try testing.expect(add(3, 7) == 10);
+}
+```
+
+Now what you see, is a C like syntax, with some keywords, variables, and types. Simple. `i32` means a 32 bit, signed, integer. You'll often see `u8` which is a byte. function signatures are simple and expected, `fn` followed by the function name, some parameters, and a return value. The return values are just sittin' at the end there. Afterwards a block is opened with a curly brace, and it's assigned to the function. Stuff that we come to expect from these types of languages.
+
+What made me real happy when I started learning Zig, (and earlier, Rust), is the direct inclusion of testing in the source code. I'm accustomed to seeing tests spread across a Ruby code base. Seeing them colocated with the code, at least initially, was great. Built in testing is legit.
+
+Zig feels C like, in that C is very close to the memory. In zig, practically everything is just bytes. Each type is series of bytes put together in some way. Take a look at this:
+
+```zig
+const std = @import("std");
+
+pub fn isAlphabetic(c: u8) bool {
+	return switch (c) {
+		'A'...'Z', 'a'...'z', '_' => true,
+		else => false,
+	};
+}
+
+test "check charater's alphabeticality." {
+	try testing.expect(isAlphabetic('a')); // passes
+	try testing.expect(isAlphabetic('G')); // passes
+	try testing.expect(isAlphabetic('9')); // passes
+	try testing.expect(isAlphabetic('*')); // fails
+}
+```
+
+We've got a switch, with a series of ranges, that return true. But we're passing a character to that switch. It's checking the numerical value of the character, to ensure it's within any of those ranges. Because characters are just numbers, Just bytes.
+
+This: `u8`, means a byte. An unsigned 8 bit integer. In Zig you can have arbitrary bit-width integers, meaning, an integer as many bits wide as you want. `u19` would be an unsigned, 19 bit integer. `i5` is a signed 5 bit integer. floats can't be arbitrarily long, we've got `f16`, `f32`, `f64`, `f80`, `f128`, and `c_longdouble`. Those arbitrary bit-width integers are exciting though. They make more sense when diving into unions, and making gnarly stuff.
+
+### Structs
+
+Structs are the loose object things in Zig, and are great. They act as namespaces, kinda, and let you pack data and functions together.
+
+```zig
+const std = @import("std");
+
+// const Self = @This();
+
+pub const Color = enum {
+	red,
+	green,
+	blue,
+	yellow
+};
+
+const Person = struct {
+	name: []const u8,
+	age: usize,
+	favorite_color: Color,
+	
+	pub fn init(name: []const u8, age: usize) Person {
+		return Person {
+			.name = name,
+			.age = age,
+			.favorite_color = Color.blue,
+		};
+	}
+};
+
+test "who is this?" {
+	const jim = Person.init("James T Kirk", 43);
+	try std.testing.expect(jim.age == 43); // passes
+	// does not compile, don't try.
+	try std.testing.expect(jim.name == "James T Kirk"); // does not compile.
+}
+```
+
+What's that note about not compiling? Well we're trying to compare two strings. Strings are of type: `[]const u8`, which means a constant array of `u8` bytes. Because strings are just... strings of bytes. arrays of bytes. Just like in C, and in reality really. Anyways to compare them you'll need to compare the memory of them, thankfully the Zig standard library has something we can use:
+
+```zig
+// ... abbreviated
+	try std.testing.expect(std.mem.eql(u8, jim.name, "James T Kirk")); // passes now.
+// ...
+```
+
+### Memory
+
+Zig is a memory managed language. I'm not very good at those yet, but It's memory management model thing seems pretty simple. Take a look at what I've got down here:
+
+```zig
+const std = @import("std");
+const stdout = std.io.getStdOut().writer();
+
+pub fn main() !void {
+	const name = "karl";
+	const status = "totalled";
+	
+	try stdout.print("{s}'s car was {s}.\n", .{name, status});
+}
+```
+
+Resulting in:
+```bash
+karl's car was totalled.
+
+```
+
+Now theres a lot here, but in that main function, you've got name, and status. They're constants, so they're not changing, and below we print some stuff out with the `stdout.print` thing. When the program exits all of the memory is freed. But what would happen if this wasn't the main function? What would the memory for name and status go? Will it be freed?
+
+Yes it will. Memory, or variables that are used like this are placed on the stack. This memory is freed at the end of each function. It's stack memory. If you want memory to stick around, you'll need to put it on the heap. To do that you'll need a memory allocator.
+
+```zig
+const std = @import("std");
+const stdout = std.io.getStdOut().writer();
+const ArrayList = std.ArrayList;
+const testing = std.testing;
+
+// make a Card struct
+const Card = struct {
+	name: []const u8,
+	suit: []const u8,
+};
+
+// Make a Cards List
+const Cards = ArrayList(Card);
+
+test "I mean whatever" {
+	var deck = Cards.init(testing.allocator);
+	defer deck.deinit();
+
+	try deck.append(Card{ .name = "Queen", .suit = "hearts", });
+	try deck.append(Card{ .name = "King", .suit = "hearts", });
+	
+	const one = deck.pop();
+	const two = deck.pop();
+	
+	try stdout.print("Card One is the {s} of {s}.\n", .{one.name, one.suit});
+	try stdout.print("Card Two is the {s} of {s}.\n", .{two.name, two.suit});
+}
+```
+
+Ok that above is a bad example because there's a lot going on. But let's walk through it. First we make a card struct, it's got two properties, or attributes. I don't know what they're called. They're strings. But specifically, const strings. So their size won't change. Then we call the `ArrayList` Function. This makes a type and returns it. The type is a growing, heap allocated, array. It's typed, and we supply it a type of `Card`. So we end up with `Cards`. I very much like this.
+
+Now, it's this allocator thing that actually does the allocation of memory. It grabs some memory on the heap, and gives you back an ArrayList that you can put stuff into. `append()` inserts `Card` structs into the ArrayList. We can `pop` those values and use them below in the print statements. But putting this all in a single test seems silly, let's have a helper function.
+
+```zig
+const std = @import("std");
+const stdout = std.io.getStdOut().writer();
+const ArrayList = std.ArrayList;
+const Allocator = std.mem.Allocator;
+const testing = std.testing;
+
+const Card = struct { name: []const u8, suit: []const u8, };
+const Cards = ArrayList(Card);
+
+// returns a deck of cards
+pub fn makeDeck(allocator: Allocator) !Cards {
+	var deck = Cards.init(allocator);
+	try deck.append(Card{ .name = "Queen", .suit = "hearts", });
+	try deck.append(Card{ .name = "King", .suit = "hearts", });
+	return deck;
+}
+
+test "I mean whatever" {
+	var deck = try makeDeck(testing.allocator);
+	defer deck.deinit();
+
+	const one = deck.pop();
+	const two = deck.pop();
+	
+	try stdout.print("Card One is the {s} of {s}.\n", .{one.name, one.suit});
+	try stdout.print("Card Two is the {s} of {s}.\n", .{two.name, two.suit});
+}
+```
+
+In this new example, we give makeDeck an allocator, and it gives us back a deck with some heap allocated memory. Notice the return value: `!Cards`, that means that, possibly, it could fail. That's why we're putting `try` everywhere. (Try/Catch works differently in Zig.).
+
+Once we get our deck back we can play around with it and print our stuff.
+
+Now try removing the line: `defer deck.deinit();`. If you do, and you run some tests: `zig test deck.zig`, then you'll see a whole bunch of debug output, and at the bottom the messages:
+```bash
+All 1 tests passed.
+1 errors were logged.
+1 tests leaked memory.
+```
+
+It's catching our leaked memory! Why? because when you use an allocator it puts memory on the heap, not the stack. So the variables and data you make don't get freed at the end of the block. They stick around. It's up to you to free them later.
+
+### Defer
+
+Zig has this thing called `defer` which defers an action until the end of a block.
+
+```zig
+const std = @import("std");
+const testing = std.testing;
+const print = std.debug.print;
+
+test "I mean whatever" {
+	var count: usize = 0;
+	count += 1;
+	print("count is:{d}\n", .{count});
+	count += 1;
+	defer {
+		print("count is:{d}\n", .{count});
+	}
+	defer count += 1;
+	defer count += 1;
+	print("count is:{d}\n", .{count});
+}
+```
+
+`defer` blocks are executed in reverse order. Which is actually fantastic. Oftentimes you build up some heap allocated state from top to bottom, but as you go down you get deeper and deeper into the state of some more complicated data structures. With `defer` you can pair allocations with `deinit()`, and unwind that state, and free that memory.
+
+I can talk a lot more about this. Like about slices, and how they are easier to work with than arrays. Or that strings are just arrays and working with them is easier when they are slices. But I'll get into that later when I describe more of the internals of **Mage** and **Kona** which will be written in Zig.
+
+Talk to you soon.
+
+-kow
