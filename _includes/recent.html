@@ -1,0 +1,6 @@
+<columnsheader hiddenlinks twocolumns> <h4>Recent Articles</h4> </columnsheader>
+<ul columns="one">
+	{% for post in site.posts limit: 4 %}
+		<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+	{% endfor %}
+</ul>

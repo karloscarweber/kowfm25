@@ -7,9 +7,9 @@ categories: blog programming-languages zig mage kona
 excerpt: "I mean, I didn't really get memory management until this thing. Stack and Heap were amorphous. Now it's clear."
 ---
 
-I picked up this new book: Introduction to Zig, a couple of weeks ago. I finished it today, and started to write a new programming language in it, named Mage.
+I picked up this new book: [Introduction to Zig](https://pedropark99.github.io/zig-book/), written by [Pedro Duarte Faria](https://pedro-faria.netlify.app), a couple of weeks ago. I finished it today, and started to write a new programming language in it, named Mage.
 
-Zig is small, simple, low level programming language suitable for high performance, embedded, and systems level tasks. It's billed as a replacement to C. Which I think it is. And offers great interoperability with C. Like it's really good. I initially became interested in learning Zig, because I kept seeing Rust compared to Zig, and I was learning Rust at the time. (A month ago). I really like Rust, but to me, Zig feels like a simpler alternative, at least on the memory management side.
+Zig is small, simple, low level programming language suitable for high performance, embedded, and systems level tasks. It's billed as a replacement to C; Which I think it is. And offers great interoperability with C. Like it's really good. I initially became interested in learning Zig, because I kept seeing Rust compared to Zig, and I was learning Rust at the time. (A month ago). I really like Rust, but to me, Zig feels like a simpler alternative, at least on the memory management side. For the purposes I'm using it for, Writing a small embeddable programming language for the web, it's a better choice.
 
 ### What does it look like:
 
@@ -20,11 +20,11 @@ const std = @import("std");
 const testing = std.testing;
 
 export fn add(a: i32, b: i32) i32 {
-		return a + b;
+  return a + b;
 }
 
 test "basic add functionality" {
-		try testing.expect(add(3, 7) == 10);
+  try testing.expect(add(3, 7) == 10);
 }
 ```
 
@@ -62,35 +62,33 @@ Structs are the loose object things in Zig, and are great. They act as namespace
 
 ```zig
 const std = @import("std");
-
 // const Self = @This();
-
 pub const Color = enum {
-	red,
-	green,
-	blue,
-	yellow
+  red,
+  green,
+  blue,
+  yellow
 };
 
 const Person = struct {
-	name: []const u8,
-	age: usize,
-	favorite_color: Color,
+  name: []const u8,
+  age: usize,
+  favorite_color: Color,
 	
-	pub fn init(name: []const u8, age: usize) Person {
-		return Person {
-			.name = name,
-			.age = age,
-			.favorite_color = Color.blue,
-		};
-	}
+  pub fn init(name: []const u8, age: usize) Person {
+    return Person {
+      .name = name,
+      .age = age,
+      .favorite_color = Color.blue,
+    };
+  }
 };
 
 test "who is this?" {
-	const jim = Person.init("James T Kirk", 43);
-	try std.testing.expect(jim.age == 43); // passes
-	// does not compile, don't try.
-	try std.testing.expect(jim.name == "James T Kirk"); // does not compile.
+  const jim = Person.init("James T Kirk", 43);
+  try std.testing.expect(jim.age == 43); // passes
+  // does not compile, don't try.
+  try std.testing.expect(jim.name == "James T Kirk"); // does not compile.
 }
 ```
 
@@ -111,17 +109,15 @@ const std = @import("std");
 const stdout = std.io.getStdOut().writer();
 
 pub fn main() !void {
-	const name = "karl";
-	const status = "totalled";
-	
-	try stdout.print("{s}'s car was {s}.\n", .{name, status});
+  const name = "karl";
+  const status = "totalled";
+  try stdout.print("{s}'s car was {s}.", .{name, status});
 }
 ```
 
 Resulting in:
 ```bash
 karl's car was totalled.
-
 ```
 
 Now theres a lot here, but in that main function, you've got name, and status. They're constants, so they're not changing, and below we print some stuff out with the `stdout.print` thing. When the program exits all of the memory is freed. But what would happen if this wasn't the main function? What would the memory for name and status go? Will it be freed?
@@ -136,25 +132,25 @@ const testing = std.testing;
 
 // make a Card struct
 const Card = struct {
-	name: []const u8,
-	suit: []const u8,
+  name: []const u8,
+  suit: []const u8,
 };
 
 // Make a Cards List
 const Cards = ArrayList(Card);
 
 test "I mean whatever" {
-	var deck = Cards.init(testing.allocator);
-	defer deck.deinit();
+  var deck = Cards.init(testing.allocator);
+  defer deck.deinit();
 
-	try deck.append(Card{ .name = "Queen", .suit = "hearts", });
-	try deck.append(Card{ .name = "King", .suit = "hearts", });
-	
-	const one = deck.pop();
-	const two = deck.pop();
-	
-	try stdout.print("Card One is the {s} of {s}.\n", .{one.name, one.suit});
-	try stdout.print("Card Two is the {s} of {s}.\n", .{two.name, two.suit});
+  try deck.append(Card{ .name = "Queen", .suit = "hearts", });
+  try deck.append(Card{ .name = "King", .suit = "hearts", });
+  
+  const one = deck.pop();
+  const two = deck.pop();
+  
+  try stdout.print("Card One is the {s} of {s}.\n", .{one.name, one.suit});
+  try stdout.print("Card Two is the {s} of {s}.\n", .{two.name, two.suit});
 }
 ```
 
@@ -174,21 +170,21 @@ const Cards = ArrayList(Card);
 
 // returns a deck of cards
 pub fn makeDeck(allocator: Allocator) !Cards {
-	var deck = Cards.init(allocator);
-	try deck.append(Card{ .name = "Queen", .suit = "hearts", });
-	try deck.append(Card{ .name = "King", .suit = "hearts", });
-	return deck;
+  var deck = Cards.init(allocator);
+  try deck.append(Card{ .name = "Queen", .suit = "hearts", });
+  try deck.append(Card{ .name = "King", .suit = "hearts", });
+  return deck;
 }
 
 test "I mean whatever" {
-	var deck = try makeDeck(testing.allocator);
-	defer deck.deinit();
+  var deck = try makeDeck(testing.allocator);
+  defer deck.deinit();
 
-	const one = deck.pop();
-	const two = deck.pop();
-	
-	try stdout.print("Card One is the {s} of {s}.\n", .{one.name, one.suit});
-	try stdout.print("Card Two is the {s} of {s}.\n", .{two.name, two.suit});
+  const one = deck.pop();
+  const two = deck.pop();
+
+  try stdout.print("Card One is the {s} of {s}.\n", .{one.name, one.suit});
+  try stdout.print("Card Two is the {s} of {s}.\n", .{two.name, two.suit});
 }
 ```
 
@@ -215,16 +211,16 @@ const testing = std.testing;
 const print = std.debug.print;
 
 test "I mean whatever" {
-	var count: usize = 0;
-	count += 1;
-	print("count is:{d}\n", .{count});
-	count += 1;
-	defer {
-		print("count is:{d}\n", .{count});
-	}
-	defer count += 1;
-	defer count += 1;
-	print("count is:{d}\n", .{count});
+  var count: usize = 0;
+  count += 1;
+  print("count is:{d}\n", .{count});
+  count += 1;
+  defer {
+    print("count is:{d}\n", .{count});
+  }
+  defer count += 1;
+  defer count += 1;
+  print("count is:{d}\n", .{count});
 }
 ```
 

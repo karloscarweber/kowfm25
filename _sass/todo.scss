@@ -1,8 +1,10 @@
 @charset "utf-8";
+@use "syntax";
 
 :root {
   --font-family: 'GeneralSans-Variable', 'GeneralSans-VariableItalic', -apple-system, Helvetica, Arial, sans-serif;
-  --font-family-monospace: Menlo, Courier New, monospace;
+  --font-family-monospace: 'mdio', Menlo, Courier New, monospace;
+  --font-family-monospace: 'JetBrainsMono-variable', Menlo, Courier New, monospace;
   --base-font-size:16px;
   --base-font-weight:400;
   --small-font-size:13px;
@@ -75,6 +77,50 @@
   font-style: italic;
 }
 
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 700.0;
+*
+* available axes:
+'wght' (range from 300.0 to 600.0
+*/
+@font-face {
+  font-family: 'JetBrainsMono-variable';
+  src: url('/assets/fonts/jetbrainsmono/JetBrainsMono-variable.woff2') format('woff2'),
+       url('/assets/fonts/jetbrainsmono/JetBrainsMono-variable.woff') format('woff'),
+       url('/assets/fonts/jetbrainsmono/JetBrainsMono-variable.ttf') format('truetype');
+  font-weight: 300 600;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 600.0;
+*
+* available axes:
+'wght' (range from 300.0 to 600.0
+*/
+@font-face {
+  font-family: 'JetBrainsMono-Italic-variable';
+  src: url('/assets/fonts/jetbrainsmono/JetBrainsMono-Italic-variable.woff2') format('woff2'),
+       url('/assets/fonts/jetbrainsmono/JetBrainsMono-Italic-variable.woff') format('woff'),
+       url('/assets/fonts/jetbrainsmono/JetBrainsMono-Italic-variable.ttf') format('truetype');
+  font-weight: 300 600;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'mdio';
+  src: url('/assets/fonts/mdio/MDIO-Medium.woff2') format('woff2'),
+       url('/assets/fonts/mdio/MDIO-Medium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
 @media (color-gamut: p3) {
   :root {
     --red-color:color(display-p3 1 0.231 0.184);
@@ -109,12 +155,11 @@ h1, h2, h3, h4, h5, h6, p, blockquote, li {
 h1 { margin-top:0.25em; margin-bottom:0.25em; font-size:var(--f4); letter-spacing:-1.13px;}
 h2, h3, h4, h5, h6 {margin-top:2rem;margin-bottom:1rem;}
 article > h1 {
-  // margin-bottom:0;
   margin-left: -0.06em;
-  // This makes it extra large.
   max-width: 120%;
   width: 120%;
   line-height: 0.81em;
+  @media (max-width: 1000px) { max-width: 110%; }
 }
 h2 { font-size:var(--f3); }
 h3 { font-size:var(--f2); }
@@ -263,9 +308,6 @@ gallery {
     max-width:calc(50% - calc(var(--space-xs) / 2));
     @media (max-width: 480px) { max-width:100%; }
   }
-  
-  // single columned
-  // &[columns="one"] {}
 }
 
 postcard {
@@ -328,12 +370,8 @@ columnsheader {
   &[hiddenlinks] + ul a { text-decoration:none; }
 }
 
-ul[columns="two"], columnsheader[hiddenlinks] + ul {
-  display:block;
-  position:relative;
+ul[columns="two"] {
   columns:2;
-  border: 2px solid black;
-  padding: 12px;
   
   &:after {
     content:"";
@@ -345,6 +383,16 @@ ul[columns="two"], columnsheader[hiddenlinks] + ul {
     width: 2px;
     background: black;
   }
+}
+
+ul[columns="one"] { columns:1; }
+
+columnsheader[hiddenlinks] + ul {
+  display:block;
+  position:relative;
+  border: 2px solid black;
+  padding: 12px;
+
   li { display:block; }
   
   @media (max-width: 600px) {
@@ -393,14 +441,8 @@ page {
   
   main    {
     grid-area:middle;
-    width:100%;
-    max-width: var(--max-container);
     justify-self: start;
     padding:var(--space-s);
-    
-    /* fixes overflow because of long code blocks. */
-    display:inline-block;
-    max-width: 100vw;
   }
   footer  {
     grid-area:bottom;
@@ -409,18 +451,12 @@ page {
 }
 
 main {
-  display:grid;
+  display: inline-block;
   position:relative;
-  grid-template-columns:auto;
-  grid-template-rows:auto;
-  grid-template-areas:
-    "header"
-    "article";
-  column-gap:0;
-  row-gap: 0;
+  width:100%;
+  max-width: 100vw;
   
-  header { grid-area:header;}
-  article { grid-area:article;}
+  header, article { margin: 0 auto; }
   
   padding:var(--space-s);
 }
@@ -455,7 +491,6 @@ article {
   titlecard {}
   content {}
   authorcard {}
-  
 }
 
 footer {
@@ -492,13 +527,12 @@ footer {
     a.MASTO:hover { color: #09F51C; }
     a.SKY:hover { color: #09A6F5; }
     a.cheese:hover { color: #FF6A0C;}
-    
   }
 }
 
 main content {
   p { text-align:justify; }
-  & > *:not(img, picture, ul, columnsheader, flex, gallery, div:has(.highlight)) {
+  & > *:not(img, picture, ul, columnsheader, flex, gallery, *:has(.highlight), figure.highlight) {
     max-width: 75%;
     @media (max-width: 765px) {
       max-width: 100%;
@@ -519,7 +553,7 @@ pre {
   border: 2px solid black;
   overflow-x: scroll;
   width:100%;
-  margin-bottom:1rem;
+  // margin-bottom:1rem;
 
   --clr-unformatted:#1D1F1E;
   --clr-keyword:    #FF3B2F;
@@ -528,13 +562,20 @@ pre {
   --clr-comment:    #707070;
   overflow-x:scroll;
 }
+code {
+  background-color: lightgrey;
+  padding: 0.15em 0.25em;
+  border-radius: 4px;
+  font-family: var(--font-family-monospace);
+  font-weight: 600;
+}
 pre code {
   display: inline-block;
   position: relative;
+  padding: 0;
+  background-color: transparent;
   font-size:var(--f0);
   line-height:1.5em;
-  font-family:menlo, monospace !important;
-  font-weight: 500;
   overflow-x: scroll;
 }
 
