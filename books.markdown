@@ -4,10 +4,10 @@ title: "Boooooooooks"
 extremelysmalllettersundertitle: "I’VE READ..."
 ---
 
-<columnsheader><h4>2025</h4><h4>40...</h4></columnsheader>
+<columnsheader><h4>2025</h4><h4>2...</h4></columnsheader>
 <flex class="booksbox">
 	<a><img height="278px" src="assets/books/book3.jpg" /></a>
-	<!-- <a><img height="278px" src="assets/books/book1.jpg" /></a> -->
+	<a><img height="278px" src="assets/books/book1.jpg" /></a>
 	<!-- <a><img height="278px" src="assets/books/book5.jpg" /></a> -->
 	<!-- <a><img height="278px" src="assets/books/book4.jpg" /></a> -->
 </flex>
