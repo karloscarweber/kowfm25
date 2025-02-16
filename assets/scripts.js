@@ -149,22 +149,22 @@ highlightAll({
 }, ".kona-code");
 
 // This provides Syntax highlighting, but only a little bit. Nothing fancy.
-highlightAll({
-  keywords: ["and",       "break",     "case",      "continue",  "class",
-    "def",       "do",        "else",      "elseif",    "end",
-    "enum",      "false",     "for",       "function",  "if",
-    "in",        "module",    "nil",       "not",       "or",
-    "repeat",    "return",    "struct",    "super",     "switch",
-    "then",      "true",      "until",     "unless",    "when",
-    "while"],
-  styles: {
-    "unformatted": "font-style: normal; font-weight: 500; color: var(--clr-unformatted)",
-    "keyword":     "font-style: normal; font-weight: 500; color: var(--clr-keyword)",
-    "punctuation": "font-style: normal; font-weight: 500; color: var(--clr-punctuation)",
-    "string":      "font-style: normal; font-weight: 500; color: var(--clr-string)",
-    "comment":     "font-style: normal; font-weight: 500; color: var(--clr-comment)",
-  },
-}, ".language-ruby");
+// highlightAll({
+//   keywords: ["and",       "break",     "case",      "continue",  "class",
+//     "def",       "do",        "else",      "elseif",    "end",
+//     "enum",      "false",     "for",       "function",  "if",
+//     "in",        "module",    "nil",       "not",       "or",
+//     "repeat",    "return",    "struct",    "super",     "switch",
+//     "then",      "true",      "until",     "unless",    "when",
+//     "while"],
+//   styles: {
+//     "unformatted": "font-style: normal; font-weight: 500; color: var(--clr-unformatted)",
+//     "keyword":     "font-style: normal; font-weight: 500; color: var(--clr-keyword)",
+//     "punctuation": "font-style: normal; font-weight: 500; color: var(--clr-punctuation)",
+//     "string":      "font-style: normal; font-weight: 500; color: var(--clr-string)",
+//     "comment":     "font-style: normal; font-weight: 500; color: var(--clr-comment)",
+//   },
+// }, ".language-ruby");
 //
 // // This provides Syntax highlighting, but only a little bit. Nothing fancy.
 // highlightAll({

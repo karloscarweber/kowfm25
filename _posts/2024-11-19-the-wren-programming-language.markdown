@@ -37,7 +37,7 @@ Scripting languages are a bit different. Instead of compiling the code to native
 The journey to get from your code, to tokens, to byte code, and then finally to be executed, offers a host of benefits or disadvantages, depending on your choice of language. New languages are made every day, or existing ones are improved. All in the pursuit to make certain tasks easier.
 
 Consider this code:
-```
+```javascript
 class Person {
   name { _name }
   construct new(name) { _name = name }
@@ -53,12 +53,12 @@ We have words, symbols, spaces, curly braces, all sorts of stuff. Along with a l
 ### Tokens
 
 The parser takes source code and converts it to tokens. Consider this:
-```
+```javascript
 var thing = "whatever"
 ```
 
 Which, when parsed, produces the following tokens:
-```
+```bash
 [  VARIABLE] => var 0..2
 [      NAME] => thing 4..8
 [ASSIGNMENT] => = 10..10
@@ -68,7 +68,7 @@ Which, when parsed, produces the following tokens:
 Now, Wren's compiler is a one-pass compiler. That means these intermediate tokens are never really created, and Byte Code is emitted directly. Wren's compiler has a single token look-ahead, look-behind, So it only really knows what's immediately ahead and behind a token. This severely limits certain syntax possibilities, but in turn, it makes the parser very simple.
 
 Consider this structure:
-```
+```javascript
 class Nuts {
   go { _nuts }
   go=(v) { _nuts = v }
@@ -79,7 +79,7 @@ class Nuts {
 We define a class, using a keyword **class**, and add some setters, getters, and a constructor. In wren, the method signature is part of it's name, and all properties, called fields, are private, so you need to add setters and getters.
 
 Instead of marking the methods with `def` or `func` or something else, they are simply Naked `names` with blocks after them. `name + block` is a simple pattern for making a method. Now let's call some methods:
-```
+```javascript
 var nutty = Nuts.new()
 nutty.go
 // > null
@@ -89,7 +89,7 @@ nutty.go
 ```
 
 Here we show some more goodies. A var keyword to tell the compiler that nutty is a new variable. The compiler emits bytecode to create that space, and then later it's assigned. Because the Wren compiler is a single pass, with only limited look ahead, we need to emit these tokens:
-```
+```bash
 [   VARIABLE] => var 0..2
 [       NAME] => nutty 4..8
 [ ASSIGNMENT] => = 10..10
@@ -103,7 +103,7 @@ Here we show some more goodies. A var keyword to tell the compiler that nutty is
 Now whitespace is usually ignored, so we don't add those, but we do want to know what each token is. You can tell from the first token and the second, that a `VARIABLE` declaration immediately followed by a `NAME`. This means that we want to set aside some storage. The bytecode to do that is then emitted. The next token is `ASSIGNMENT`, a binary operator. It takes the next `STATEMENT`, and assigns it to the name that came before. At this point we know that what comes next needs to be a valid statement, so the compiler begins interpreting the next tokens assuming this. If it runs into an unexpected situation, it can emit an error.
 
 It may not seem immediately recognizable, but a single pass compiler means that certain features just aren't feasible, or pretty difficult. Additionally, to keep the syntax simple, certain other features are not as easy. Consider free floating functions:
-```
+```javascript
 myFunction()
 ```
 

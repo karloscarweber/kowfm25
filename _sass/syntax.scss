@@ -1,14 +1,16 @@
-// Monokai source
+// Monokai source, like it's the source of this.
 .highlight {
 	--hl-bg: #F8F8F8;
 	--hl-comment: #7E7E7E;
 	--hl-error: #960050;
 	--hl-error-bg: #1e0010;
-	--hl-keyword:#235EB2;
+	--hl-keyword:#174587;
+	--hl-keyword:#412bb1;
 	--hl-literal: #A639A6;
-	--hl-name:  #2C67F6;
+	// --hl-name:  #2C67F6;
+	--hl-name:  #333;
 	--hl-operator: #f92672;
-	--hl-punctuation: #444; // #3884F4;
+	--hl-punctuation: #333; // #3884F4;
 	--hl-keyword-namespace: #f92672;
 	--hl-literal-date: #ED8418;
 	--hl-literal-number: #A639A6;
@@ -120,4 +122,10 @@ figure.whatever {
 .language-bash .highlight {
 	pre { background: rgb(201, 201, 201); }
 	& * { color: rgb(40, 39, 39) !important; }
+}
+
+
+// try something dark
+.highlight {
+	--hl-bg: #F8F8F8;
 }

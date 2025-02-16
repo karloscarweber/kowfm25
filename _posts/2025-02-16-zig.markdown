@@ -2,7 +2,7 @@
 layout: post
 title: "Zig"
 description: "I talk a little about the Zig progrmaming language. The book I read about it."
-date: 2025-02-14 00:30:00 0600
+date: 2025-02-16 00:30:00 0600
 categories: blog programming-languages zig mage kona
 excerpt: "I mean, I didn't really get memory management until this thing. Stack and Heap were amorphous. Now it's clear."
 ---
@@ -96,7 +96,7 @@ What's that note about not compiling? Well we're trying to compare two strings. 
 
 ```zig
 // ... abbreviated
-	try std.testing.expect(std.mem.eql(u8, jim.name, "James T Kirk")); // passes now.
+  try std.testing.expect(std.mem.eql(u8, jim.name, "James T Kirk")); // passes now.
 // ...
 ```
 
