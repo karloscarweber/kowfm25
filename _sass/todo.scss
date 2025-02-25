@@ -161,7 +161,7 @@ h2 { font-size:var(--f3); }
 h3 { font-size:var(--f2); }
 h4 { font-size:var(--f1); }
 p, blockquote, li, figure {margin-bottom:1em}
-p, li  { font-size:var(--f0); line-height:1.5; font-weight:550; color:var(--text-color);}
+p, li  { font-size:var(--f0); line-height:1.5; font-weight:550; color:var(--text-color); letter-spacing: -0.02em;}
 p[size=small] { font-size:var(--f-1); }
 p[size=annotation] { font-size:var(--f-1); font-weight:400; font-style:italic; }
 p[type=meta] { font-size:var(--f-2); font-family:var(--font-family-monospace); font-weight:700; line-height:2; }
